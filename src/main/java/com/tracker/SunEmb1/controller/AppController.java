@@ -554,8 +554,7 @@ public class AppController {
 			e.printStackTrace();
 			redirect.addFlashAttribute("error", "Operation Fail");
 		}
-		
-		//Return to user's Dashboard
+	//Return to user's Dashboard
 		Optional<Users> user = userRepository.findUserByUsername(loggedInUser);
 		if(user.get().getDivision().contentEquals("ADMIN")) {
 			return "redirect:/admin_dashboard";
@@ -572,21 +571,49 @@ public class AppController {
 		return "redirect:/orderList";
 	}
 	
-	/*
-	 * @GetMapping("orderPage") public String
-	 * orderPage(@SessionAttribute("loggedInUser") String loggedInUser,@RequestParam
-	 * Long orderId, Model model) { System.out.println(loggedInUser + "&&&&&&");
-	 * System.out.println(orderId + "ORDER ID ***************************"); try {
-	 * if(loggedInUser.isEmpty() && loggedInUser != null) {
-	 * System.out.println("USER EMPTY"); model.addAttribute("Error",
-	 * "Error - Session expired, please log in again."); return "login"; }
-	 * System.out.println("FINDING ORDER");
-	 * orderRepository.findById(orderId).ifPresent(o->{
-	 * System.out.println("ORDER FOUND"); model.addAttribute("order_info", o); });
-	 * 
-	 * model.addAttribute("page", "orderPage"); } catch (Exception e) {
-	 * e.printStackTrace(); } return "orderPage"; }
-	 */
+	@PostMapping("updateOrderDescription")
+	String updateOrderDescription(@SessionAttribute("loggedInUser") String loggedInUser, @ModelAttribute("order") Orders order, @RequestParam String orderId, RedirectAttributes redirect) {
+		System.out.println(order.getOrderId() + "*****************");
+		System.out.println(orderId + "*******************");
+		
+		try {
+			System.out.println("Finding order: " + order.getOrderId()+" *********************");
+			orderRepository.findById(order.getOrderId()).ifPresent(a->{
+				System.out.println("ORDER FOUND!!!!!!!!!!!!!!!");
+				LocalDate currentDate = LocalDate.now();
+				a.setUpdatedDate(currentDate);
+				a.setUserId(loggedInUser);
+				System.out.println("ORDER DESCRIPTION: " + a.getDescription());
+				
+				a.setDescription(a.getDescription());
+				a.setLog("Description changed", loggedInUser, currentDate);
+				System.out.println("NEW ORDER DESCRIPTION: " + a.getDescription());
+				
+				
+				
+				orderRepository.save(a);
+			});
+			redirect.addFlashAttribute("success", "Note added.");
+		} catch (Exception e) {
+			e.printStackTrace();
+			redirect.addFlashAttribute("error", "Operation Fail");
+		}
+		//Return to user's dashboard
+		Optional<Users> user = userRepository.findUserByUsername(loggedInUser);
+		if(user.get().getDivision().contentEquals("ADMIN")) {
+			return "redirect:/admin_dashboard";
+		}
+		else if(user.get().getDivision().contentEquals("EMB")) {
+			return "redirect:/embroidery";
+		} else if (user.get().getDivision().contentEquals("LAS")) {
+			return "redirect:/laser";
+		} else if (user.get().getDivision().contentEquals("SCR")) {
+			return "redirect:/screenprint";
+		} else if (user.get().getDivision().contentEquals("VIN")) {
+			return "redirect:/vinyl";
+		}
+		return "redirect:/orderList";
+	}
 	
 	@GetMapping({ "orderPage" })
 	String orderPage(@SessionAttribute("loggedInUser") String loggedInUser, Model model, @ModelAttribute("order") Orders order, RedirectAttributes redirect) {

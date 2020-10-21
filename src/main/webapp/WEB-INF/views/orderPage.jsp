@@ -80,8 +80,13 @@
           						</td>
           					</tr>
 						</table>
-					<h5>Order Description</h5>	
-					<p>${order_info.description}</p>				
+					<h5>Order Description
+						<a class="open-AddBookDialog" href="#" data-toggle="modal" data-target="#edits" title="Update Order Description" data-id="${order_info.orderId}"> 
+							<i class="fa fa-pencil"></i>
+						</a>
+					</h5>	
+					<p>${order_info.description}</p>		
+							
 				</div>
 			</div>
 			
@@ -135,7 +140,7 @@
 		</div>
 	</div>
 	
-	<%-- <!-- MODAL BEGIN -->
+	<!-- MODAL BEGIN -->
 	<div class="modal fade" id="edits">
 		<div class="modal-dialog modal-md">
 			<div class="modal-content">
@@ -148,45 +153,38 @@
 				</div>
 				<!-- Modal body -->
 				<div class="modal-body">
-					<form:form action="updatemyinfo" modelAttribute="user" method="post">
+					<form:form action="updateOrderDescription" modelAttribute="order" method="post">
 						<div class="form-group">
-							<label for="firstName">First Name</label>
-							<form:input path="firstName" value="${user_account.firstName}"
-								class="form-control" placeholder="First Name" />
-							<form:input type="hidden" path="userId" value="${user_account.userId}"
-								class="form-control" />
-						</div>
-						<div class="form-group">
-							<label for="lastName">Last Name</label>
-							<form:input path="lastName" value="${user_account.lastName}"
-								class="form-control" placeholder="Last Name" />
-						</div>
-						<div class="form-group">
-							<label for="password">Password</label>
-							<form:input path="password" 
-								class="form-control" placeholder="New Password" value="${user_account.password}"/>
-						</div>
-						<div class="form-group">
-							<label for="password2">Confirm Password</label>
-							<form:input path="password2" 
-								class="form-control" placeholder="Confirm Password" value="${user_account.password}" />
-							<form:errors path="password2" class="text-danger text-center"/>
+						<label for="description">Order Description</label>
+						<p><strong>Current Description:</strong> <br> ${order_info.description} </p>
+							<form:textarea path="description" name="description" class="form-control" placeholder="New description (Completely typed out.)"></form:textarea>
+							<form:input type="hidden" path="orderId" value="${order_info.orderId}" class="form-control" />
 						</div>
 						<div>
 							<button type="submit" class="btn btn-primary">
 								<i class="fa fa-user"></i> Save
 							</button>
 							<button type="button" data-dismiss="modal" aria-label="Close"
-								class="btn btn-danger">Close</button>
+								class="btn btn-danger">Close
+							</button>
 						</div>
 					</form:form>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- MODAL END --> --%>
+	<!-- MODAL END -->
 	
 	
 <jsp:include page="components/footer.jsp"></jsp:include>
+
+
+<script>
+$(document).on("click", ".open-AddBookDialog", function () {
+    var myOrderId = $(this).data('id');
+    $(".modal-body #orderId").val( myOrderId );
+   $('#addBookDialog').modal('show');
+});
+</script>
 </body>
 </html>
