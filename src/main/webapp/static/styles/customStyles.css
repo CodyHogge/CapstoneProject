@@ -1,0 +1,14 @@
+@charset "ISO-8859-1";
+
+
+.customTableSmall{
+	border: 1px solid black;
+	margin-top: 10px;
+	padding: 5px;
+}
+
+.importantTable{
+	border: 2px solid orange;
+	margin-top: 10px;
+	padding: 5px;
+}

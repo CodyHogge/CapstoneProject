@@ -1,0 +1,6 @@
+package com.tracker.SunEmb1.utils;
+
+public enum Status {
+	RECEIVED, ACCEPTED, WORKING, COMPLETED, PAYMENT, SHIPPING, CLOSED,
+	STOPPED, NEEDS_ATTENTION
+}
