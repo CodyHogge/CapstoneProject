@@ -100,12 +100,12 @@
           </li>
         </ul>
 
-        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+        <!-- <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
           <span>Saved reports</span>
           <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
             <span data-feather="plus-circle"></span>
           </a>
-        </h6>
+        </h6> -->
         <!-- <ul class="nav flex-column mb-2">
           <li class="nav-item">
             <a class="nav-link" href="#">
@@ -139,14 +139,14 @@
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Administrator Dashboard</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group mr-2">
+          <!-- <div class="btn-group mr-2">
             <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
             <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
           </div>
           <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
             <span data-feather="calendar"></span>
             This week
-          </button>
+          </button> -->
         </div>
       </div>
 
@@ -160,6 +160,9 @@
 			    <button class="btn btn-success" type="submit">Search</button>
 			  </form>
 		    </li>
+		    </li>
+		    <li class="text-muted"> Search orders by: Customer Name, OrderId, or Updating User</li>
+	        <li>
 	        <li>
 	        <span class="text-info"><strong>${welcomeMessage}</strong></span>
 	        <span class="text-success"><strong>${success}</strong></span>

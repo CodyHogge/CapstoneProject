@@ -61,7 +61,7 @@ public class AppController {
 	
 	@GetMapping({"login" , "/"})
 	public String login(Model model) {
-		model.addAttribute("msg1", "msg1 - Message tag");
+		model.addAttribute("msg1", "User Login");
 		model.addAttribute("Error", "Error - Operation Failed.");
 		model.addAttribute("Resp", "Resp - Action Completed.");
 		return "login";
@@ -146,7 +146,7 @@ public class AppController {
 		model.addAttribute("role", "");
 		Users user = new Users();
 		model.addAttribute("user", user);
-		model.addAttribute("msg1", "msg1 - You have been logged out.");
+		model.addAttribute("msg1", "You have been logged out.");
 		return "login";
 	}
 	
@@ -585,9 +585,9 @@ public class AppController {
 				a.setUserId(loggedInUser);
 				System.out.println("ORDER DESCRIPTION: " + a.getDescription());
 				
-				a.setDescription(a.getDescription());
+				a.setDescription(order.getDescription());
 				a.setLog("Description changed", loggedInUser, currentDate);
-				System.out.println("NEW ORDER DESCRIPTION: " + a.getDescription());
+				System.out.println("NEW ORDER DESCRIPTION: " + order.getDescription());
 				
 				
 				

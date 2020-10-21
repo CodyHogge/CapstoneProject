@@ -49,10 +49,10 @@
 					<td>Username</td>
 					<td>${user_account.username}</td>
 				</tr>
-				<tr class="text-success">
+				<%-- <tr class="text-success">
 					<td>Email</td>
 					<td>${user_account.email}</td>
-				</tr>
+				</tr> --%>
 				<tr class="text-success">
 					<td>Division</td>
 					<td>${user_account.division}</td>

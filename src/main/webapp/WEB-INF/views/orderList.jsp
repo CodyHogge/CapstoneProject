@@ -97,12 +97,12 @@
           </li>
         </ul>
 
-        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+       <!--  <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
           <span>Saved reports</span>
           <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
             <span data-feather="plus-circle"></span>
           </a>
-        </h6>
+        </h6> -->
         <!-- <ul class="nav flex-column mb-2">
           <li class="nav-item">
             <a class="nav-link" href="#">
@@ -136,14 +136,14 @@
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Order List</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group mr-2">
+          <!-- <div class="btn-group mr-2">
             <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
             <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
           </div>
           <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
             <span data-feather="calendar"></span>
             This week
-          </button>
+          </button> -->
         </div>
       </div>
 
@@ -220,10 +220,12 @@
 						</form>
 					</td>
 					<td>${order.updatedDate}</td>
-					<td>${order.userId}</td>
+					<td><span class="text-info"><strong>${order.userId}</strong></span></td>
 					<td>
+						<c:if test="${role eq 'ADMIN'}">
 						<a href="removeorder?orderId=${order.orderId}" onclick="confirmed(); return false;" title="Delete Order?"
 						class="btn btn-danger"> <i class="fa fa-trash"></i></a>
+						</c:if>
 						
 						<a class="open-AddBookDialog btn btn-warning" href="#" data-toggle="modal" data-target="#addOrderNote" title="Add note to order" data-id="${order.orderId}">
 						<i class="fa fa-sticky-note-o" aria-hidden="true"></i></a>

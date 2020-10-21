@@ -157,7 +157,7 @@
 						<div class="form-group">
 						<label for="description">Order Description</label>
 						<p><strong>Current Description:</strong> <br> ${order_info.description} </p>
-							<form:textarea path="description" name="description" class="form-control" placeholder="New description (Completely typed out.)"></form:textarea>
+							<form:textarea path="description" name="description" class="form-control" placeholder="${order_info.description }" value="${order_info.description}"></form:textarea>
 							<form:input type="hidden" path="orderId" value="${order_info.orderId}" class="form-control" />
 						</div>
 						<div>
